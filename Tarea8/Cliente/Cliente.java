@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-
+import java.util.Scanner;
 public class Cliente {
 
   String url_string;
@@ -92,7 +92,7 @@ public class Cliente {
       System.exit(1);
     }
     String url_servicio = args[0];
-    c = new Cliente(url_servicio);
+      Cliente c = new Cliente(url_servicio);
     
     String opcion = "";
     while (opcion.compareTo("d") != 0) {
