@@ -14,8 +14,6 @@ public class Usuario {
   String genero;
   byte[] foto;
 
-  // @FormParam necesita un metodo que convierta una String al objeto de tipo
-  // Usuario
   public static Usuario valueOf(String s) throws Exception {
     Gson j = new GsonBuilder().registerTypeAdapter(byte[].class, new AdaptadorGsonBase64()).create();
     return (Usuario) j.fromJson(URLDecoder.decode(s, "UTF-8"), Usuario.class);
@@ -28,27 +26,27 @@ public class Usuario {
 
   public static Usuario leerDesdeTeclado(){
     Scanner input = new Scanner( System.in );
-    System.out.println("Escriba los siguientes campos que se le solicitan");
     Usuario u = new Usuario();
-    while(u.email == "" || u.email == null){
-      System.out.print("(Obligatorio) Email: ");
-      u.email = input.nextLine();
-    }
-    while(u.nombre == "" || u.nombre == null){
-      System.out.print("(Obligatorio) Nombre: ");
+      while(u.nombre == "" || u.nombre == null){
+      System.out.print("Nombre: ");
       u.nombre = input.nextLine();
     }
+    while(u.email == "" || u.email == null){
+      System.out.print("Email: ");
+      u.email = input.nextLine();
+    }
+    
     while(u.apellido_paterno == "" || u.apellido_paterno == null){
-      System.out.print("(Obligatorio) Apellido paterno: ");
+      System.out.print("Apellido paterno: ");
       u.apellido_paterno = input.nextLine();
     }
     while(u.apellido_materno == "" || u.apellido_materno == null){
-      System.out.print("(Obligatorio) Apellido materno: ");
+      System.out.print("Apellido materno: ");
       u.apellido_materno = input.nextLine();
     }
 
     while(true){
-      System.out.print("(Obligatorio) Fecha de nacimiento(aaaa-mm-dia): ");
+      System.out.print("Fecha de nacimiento(aaaa-mm-dia): ");
       u.fecha_nacimiento = input.nextLine();
       String[] dia_mes_anio = u.fecha_nacimiento.split("-");
       System.out.println(u.fecha_nacimiento);
@@ -61,10 +59,10 @@ public class Usuario {
     }
     
 
-    System.out.print("(Opcional) Telefono: ");
+    System.out.print("Telefono: ");
     u.telefono = input.nextLine();
 
-    System.out.print("(Opcional) Genero(M/F): ");
+    System.out.print("Genero(M/F): ");
       u.genero = input.nextLine();
 
     if (u.genero == "") u.genero = "M";
