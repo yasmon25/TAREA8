@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.*;
-// javac -cp $CATALINA_HOME/lib/gson-2.3.1.jar:. *.java
 
 public class Cliente {
 
@@ -85,6 +84,54 @@ public class Cliente {
       String respuesta;
       while ((respuesta = br.readLine()) != null)
         System.out.println(respuesta);
+    }
+  }
+    public static void main(String[] args) {
+    if (args.length != 1) {
+      System.err.println("FALTA IP DEL SERVIDOR");
+      System.exit(1);
+    }
+    String url_servicio = args[0];
+    c = new Cliente(url_servicio);
+    
+    String opcion = "";
+    while (opcion.compareTo("d") != 0) {
+      System.out.print("MENU\n \n a. Alta usuario\n b. Consulta usuario\n c. Borra usuario\n d. Salir\n \n Seleccione una opción: ");
+      opcion = System.console().readLine();
+      if (opcion.compareTo("a") == 0) {
+            Usuario u = Usuario.leerDesdeTeclado();
+            try {
+              int id = c.altaUsuario(u);
+              if (id == 0)
+                return;
+              System.out.println("ID: " + id);
+            } catch (Exception e) {
+              System.out.println(e.getMessage());
+            }
+      }
+      if (opcion.compareTo("b") == 0) {
+            System.out.println("INTRODUZCA ID: ");
+            Scanner input = new Scanner(System.in);
+            int id = input.nextInt();
+            try {
+              Usuario u = c.consultarUsuario(id);
+              if (u.id_usuario == 0)
+                return;
+              u.imprimir();
+            } catch (Exception e) {
+              System.out.println(e.getMessage());
+            }
+      }
+      if (opcion.compareTo("c") == 0) {
+            System.out.println("INTRODUZCA ID: ");
+            Scanner input = new Scanner(System.in);
+            int id = input.nextInt();
+            try {
+              c.borraUsuario(id);
+            } catch (Exception e) {
+              System.out.println(e.getMessage());
+            }
+      }
     }
   }
 }
