@@ -31,12 +31,7 @@ public class Usuario {
       System.out.print("Nombre: ");
       u.nombre = input.nextLine();
     }
-    while(u.email == "" || u.email == null){
-      System.out.print("Email: ");
-      u.email = input.nextLine();
-    }
-    
-    while(u.apellido_paterno == "" || u.apellido_paterno == null){
+        while(u.apellido_paterno == "" || u.apellido_paterno == null){
       System.out.print("Apellido paterno: ");
       u.apellido_paterno = input.nextLine();
     }
@@ -44,7 +39,11 @@ public class Usuario {
       System.out.print("Apellido materno: ");
       u.apellido_materno = input.nextLine();
     }
-
+    while(u.email == "" || u.email == null){
+      System.out.print("Email: ");
+      u.email = input.nextLine();
+    }
+    
     while(true){
       System.out.print("Fecha de nacimiento(aaaa-mm-dia): ");
       u.fecha_nacimiento = input.nextLine();
